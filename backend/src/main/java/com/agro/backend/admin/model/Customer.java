@@ -1,16 +1,8 @@
 package com.agro.backend.admin.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Document(collection = "customers")
 public class Customer {
 
@@ -20,12 +12,55 @@ public class Customer {
     private String name;
     private String email;
     private String phone;
-    private String location;
+    private boolean active;
 
-    private LocalDate date;
+    public Customer() {
+    }
 
-    private String status;
-    private String paymentStatus;
+    public Customer(String name, String email, String phone, boolean active) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.active = active;
+    }
 
-    private String notes;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

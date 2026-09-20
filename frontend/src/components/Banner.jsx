@@ -1,5 +1,5 @@
 import React from 'react'
-import './Banner.css';
+import '../CSS/Banner.css';
 
 import banner1 from '../assets/images/banner1.jpg';
 import banner2 from '../assets/images/banner2.jpg';
@@ -18,17 +18,17 @@ const Banner = () => {
 
             <div className='carousel-inner'>
                 <div className='carousel-item active'> 
-                    <img src={banner1} alt="" className='d-block w-100'   style={{ height: "600px", objectFit: "cover" }} />
+                    <img src={banner1} alt="" className='banner-image d-block w-100' />
                     <div className="carousel-caption">
                       <h2>Smart Farming Solutions</h2>
                       <p>Get the right guidance for better crops and better yields.</p>
 
-                      <a href="tel:+919XXXXXXXXX" className="btn btn-success">Call Us</a>
+                      <a className="btn-primary-custom" href="tel:+919XXXXXXXXX" >Call Us</a>
                     </div>
                 </div>
 
                  <div className='carousel-item'> 
-                    <img src={banner2} alt="" className='d-block w-100'   style={{ height: "600px", objectFit: "cover" }} />
+                    <img src={banner2} alt="" className='banner-image d-block w-100 ' />
 
                      <div className="carousel-caption">
                      <h2>Identify Crop Problems</h2>
@@ -37,7 +37,7 @@ const Banner = () => {
                 </div>
 
                  <div className='carousel-item'> 
-                    <img src={banner3} alt="" className='d-block w-100'    style={{ height: "600px", objectFit: "cover" }}/>
+                    <img src={banner3} alt="" className='banner-image d-block w-100'/>
                      <div className="carousel-caption">
                      <h2>Quality Products for Your Farm</h2>
                      <p>Find the products you need for healthy and productive crops.</p>

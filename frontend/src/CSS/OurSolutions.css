@@ -1,0 +1,22 @@
+.solution-card {
+  border: none;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.solution-card h4 {
+  color: var(--dark-green);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.solution-card p {
+  color: var(--muted-text);
+}

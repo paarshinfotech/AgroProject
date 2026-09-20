@@ -1,0 +1,285 @@
+.what-we-provide {
+  background: #ffffff;
+  padding: 90px 0;
+}
+
+
+   /* HEADING */
+
+
+.services-heading {
+  max-width: 800px;
+  margin: 0 auto 55px;
+}
+
+.services-label {
+  display: inline-block;
+
+  padding: 8px 22px;
+
+  background: #ECFFFD;
+  color: #00A59E;
+
+  border: 1px solid #C7F8FF;
+  border-radius: 50px;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 18px;
+}
+
+.services-heading h2 {
+  color: #131C44;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+
+  margin-bottom: 15px;
+}
+
+.services-heading p {
+  color: #666666;
+
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+
+  max-width: 650px;
+
+  margin: 0 auto;
+}
+
+
+/* HEADING LINE */
+
+.heading-line {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 22px;
+}
+
+.heading-line span {
+  width: 70px;
+  height: 4px;
+
+  background: #00A59E;
+
+  border-radius: 10px;
+
+  position: relative;
+}
+
+.heading-line span::after {
+  content: "";
+
+  position: absolute;
+
+  right: -15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 7px;
+  height: 7px;
+
+  background: #0EB9D3;
+
+  border-radius: 50%;
+}
+
+
+/*    SERVICE CARD */
+
+.service-card {
+  height: 100%;
+
+  position: relative;
+
+  padding: 32px;
+
+  background: #ffffff;
+
+  border: 1px solid #E5EAF0;
+
+  border-radius: 20px;
+
+  box-shadow: 0 5px 20px rgba(19, 28, 68, 0.06);
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+}
+
+
+/* Top hover line */
+
+.service-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 4px;
+
+  background: #00A59E;
+
+  transition: width 0.3s ease;
+}
+
+
+/* Hover */
+
+.service-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #C7F8FF;
+
+  box-shadow: 0 15px 35px rgba(19, 28, 68, 0.12);
+}
+
+.service-card:hover::before {
+  width: 100%;
+}
+
+
+/*    ICON */
+
+.service-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ECFFFD;
+
+  border-radius: 16px;
+
+  margin-bottom: 25px;
+
+  transition: all 0.3s ease;
+}
+
+.service-icon span {
+  font-size: 28px;
+}
+
+.service-card:hover .service-icon {
+  background: #C7F8FF;
+
+  transform: scale(1.05);
+}
+
+
+/*    TITLE */
+
+.service-card h3 {
+  color: #131C44;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  margin-bottom: 14px;
+}
+
+
+/*    DESCRIPTION */
+
+.service-card p {
+  color: #666666;
+
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  margin-bottom: 35px;
+}
+
+
+/*    ARROW */
+
+.service-arrow {
+  position: absolute;
+
+  right: 28px;
+  bottom: 25px;
+
+  color: #00A59E;
+
+  font-size: 28px;
+
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+  transform: translateX(7px);
+
+  color: #0EB9D3;
+}
+
+
+/*    OPTIONAL */
+
+.optional-badge {
+  position: absolute;
+
+  top: 30px;
+  right: 25px;
+
+  padding: 5px 11px;
+
+  background: #ECFFFD;
+
+  color: #00A59E;
+
+  border-radius: 20px;
+
+  font-family: "Open Sans", sans-serif;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/*    MOBILE */
+
+@media (max-width: 767px) {
+
+  .what-we-provide {
+    padding: 60px 15px;
+  }
+
+  .services-heading h2 {
+    font-size: 32px;
+  }
+
+  .services-heading p {
+    font-size: 15px;
+  }
+
+  .service-card {
+    padding: 25px;
+  }
+
+  .service-card h3 {
+    font-size: 18px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+  }
+}

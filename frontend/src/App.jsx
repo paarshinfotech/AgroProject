@@ -1,14 +1,21 @@
-<<<<<<< HEAD
-=======
-// import Navbar from "./components/Navbar";
-import CustomerManagement from "../src/Admin/Pages/CustomerManagement"
+import { useState } from "react";
+import Sidebar from "./Admin/Components/Sidebar";
+import CustomerManagement from "./Admin/Pages/CustomerManagement";
+
 function App() {
+  const [currentPage, setCurrentPage] = useState("Dashboard");
+
   return (
     <>
-      <CustomerManagement />
+      <Sidebar setCurrentPage={setCurrentPage} />
+
+      {currentPage === "Customer Management" && (
+        <div style={{ marginLeft: "260px" }}>
+          <CustomerManagement />
+        </div>
+      )}
     </>
   );
 }
 
 export default App;
->>>>>>> 9e8584e37e5b1008d8f7a7d0771139b048078439

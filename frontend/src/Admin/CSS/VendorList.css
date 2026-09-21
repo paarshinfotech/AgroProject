@@ -1,0 +1,20 @@
+.admin-layout {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.vendor-content {
+  min-height: 100vh;
+  padding: 24px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Sidebar Open */
+.vendor-content.sidebar-open {
+  margin-left: 255px;
+}
+
+/* Sidebar Closed */
+.vendor-content.sidebar-closed {
+  margin-left: 75px;
+}

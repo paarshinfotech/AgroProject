@@ -1,19 +1,34 @@
-import {Route, Routes} from "react-router-dom";
-import './App.css'
-import Home from "./pages/Home";
-import VendorList from "./Admin/Pages/VendorList";
 
-
-
-import CustomerManagement from "../src/Admin/Pages/CustomerManagement"
+import { useState } from "react";
+import Sidebar from "./Admin/Components/Sidebar";
+import Dashboard from "./Admin/Pages/Dashboards";
+import CustomerManagement from "./Admin/Pages/CustomerManagement";
+import Report from "./Admin/Pages/Report";
 
 function App() {
-  
+  const [currentPage, setCurrentPage] = useState("Dashboard");
 
   return (
     <>
+      <Sidebar setCurrentPage={setCurrentPage} />
 
-      <CustomerManagement />
+      {currentPage === "Dashboard" && (
+        <div style={{ marginLeft: "260px" }}>
+          <Dashboard />
+        </div>
+      )}
+
+      {currentPage === "Customer Management" && (
+        <div style={{ marginLeft: "260px" }}>
+          <CustomerManagement />
+        </div>
+      )}
+
+      {currentPage === "Reports" && (
+        <div style={{ marginLeft: "260px" }}>
+          <Report />
+        </div>
+      )}
 
     </>
   );

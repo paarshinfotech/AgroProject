@@ -35,23 +35,6 @@ import "../CSS/CustomerManagement.css";
 const API_BASE_URL = "http://localhost:8080";
 const CUSTOMERS_API_URL = `${API_BASE_URL}/api/admin/customers-management`;
 
-const DEMO_FALLBACK_ENABLED = true;
-
-const DEMO_CUSTOMERS = [
-  { id: "6741a0012c3d4e5f60718201", customerId: "CUST001", name: "Sonu Jup", phone: "9876543210", email: "sonu@gmail.com", location: "Kothrud", date: "2026-01-05", status: "Active", paymentStatus: "Paid", notes: "" },
-  { id: "6741a0022c3d4e5f60718202", customerId: "CUST002", name: "Sneha Patil", phone: "9823456789", email: "sneha@gmail.com", location: "Wakad", date: "2026-01-18", status: "Active", paymentStatus: "Pending", notes: "" },
-  { id: "6741a0032c3d4e5f60718203", customerId: "CUST003", name: "Abhilash Dixit", phone: "9765432109", email: "amit@gmail.com", location: "Hadapsar", date: "2025-12-25", status: "Inactive", paymentStatus: "Overdue", notes: "" },
-  { id: "6741a0042c3d4e5f60718204", customerId: "CUST004", name: "Priya Joshi", phone: "8888888888", email: "priya@gmail.com", location: "Baner", date: "2026-02-02", status: "Active", paymentStatus: "Paid", notes: "" },
-  { id: "6741a0052c3d4e5f60718205", customerId: "CUST005", name: "Swapnil Patil", phone: "9012345678", email: "kiran@gmail.com", location: "Hinjewadi", date: "2026-02-15", status: "New", paymentStatus: "Pending", notes: "" },
-  { id: "6741a0062c3d4e5f60718206", customerId: "CUST006", name: "Vishal Chavan", phone: "9567890123", email: "rohan@gmail.com", location: "Shivajinagar", date: "2025-12-30", status: "VIP", paymentStatus: "Paid", notes: "" },
-  { id: "6741a0072c3d4e5f60718207", customerId: "CUST007", name: "Meera Kulkarni", phone: "9123456780", email: "meera@gmail.com", location: "Aundh", date: "2026-01-10", status: "Active", paymentStatus: "Paid", notes: "" },
-  { id: "6741a0082c3d4e5f60718208", customerId: "CUST008", name: "Rahul Deshmukh", phone: "9988776655", email: "rahul@gmail.com", location: "Viman Nagar", date: "2026-01-22", status: "New", paymentStatus: "Pending", notes: "" },
-  { id: "6741a0092c3d4e5f60718209", customerId: "CUST009", name: "Anita Sharma", phone: "9090909090", email: "anita@gmail.com", location: "Pimpri", date: "2026-02-12", status: "VIP", paymentStatus: "Paid", notes: "" },
-  { id: "6741a0102c3d4e5f60718210", customerId: "CUST010", name: "Nikhil Rane", phone: "9345678901", email: "nikhil@gmail.com", location: "Katraj", date: "2026-01-28", status: "Inactive", paymentStatus: "Overdue", notes: "" },
-  { id: "6741a0112c3d4e5f60718211", customerId: "CUST011", name: "Kavita Pawar", phone: "9876500011", email: "kavita@gmail.com", location: "Kothrud", date: "2026-02-08", status: "Active", paymentStatus: "Pending", notes: "" },
-  { id: "6741a0122c3d4e5f60718212", customerId: "CUST012", name: "Omkar Jadhav", phone: "9876500022", email: "omkar@gmail.com", location: "Baner", date: "2026-02-19", status: "New", paymentStatus: "Paid", notes: "" },
-];
-
 /* ----------------------------------------------------------------------------
    Inline SVG icons (unchanged)
 ---------------------------------------------------------------------------- */

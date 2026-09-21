@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-=======
-// import Navbar from "./components/Navbar";
-import CustomerManagement from "../src/Admin/Pages/CustomerManagement"
+import React from "react";
+import ApprovalManagement from "./Admin/Components/CSS/Pages/ApprovalManagement";
+
 function App() {
   return (
-    <>
-      <CustomerManagement />
-    </>
+    <ApprovalManagement />
   );
 }
 
 export default App;
->>>>>>> 9e8584e37e5b1008d8f7a7d0771139b048078439

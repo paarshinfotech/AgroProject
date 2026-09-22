@@ -135,6 +135,13 @@ function Dashboard() {
   return (
 
     <div className="dashboard">
+       {/* ==============================================
+          PAGE HEADER
+      ============================================== */}
+
+      <div className="Dashboard-header">
+        <h2>Dashboard</h2>
+      </div>
 
       {/* ==============================================
           STATISTICS CARDS
@@ -198,13 +205,13 @@ function Dashboard() {
 
           <div className="revenue-chart">
 
-            <div className="revenue-y-axis">
+            {/* <div className="revenue-y-axis">
               <span>5000</span>
               <span>4000</span>
               <span>3000</span>
               <span>2000</span>
               <span>1000</span>
-            </div>
+            </div> */}
 
 
             <div className="revenue-chart-area">
@@ -215,7 +222,7 @@ function Dashboard() {
               <div className="revenue-grid grid-4"></div>
               <div className="revenue-grid grid-bottom"></div>
 
-
+{/* 
               <div className="revenue-bars">
 
                 <div className="revenue-column">
@@ -264,9 +271,9 @@ function Dashboard() {
                     style={{ height: "150px" }}
                   ></div>
                   <span>Jun</span>
-                </div>
+                </div> */}
 
-              </div>
+              {/* </div> */}
 
             </div>
 
@@ -302,7 +309,7 @@ function Dashboard() {
 
           <div className="customer-vendor-chart">
 
-            <div className="overview-y-axis">
+            {/* <div className="overview-y-axis">
 
               <span>200</span>
               <span>150</span>
@@ -310,7 +317,7 @@ function Dashboard() {
               <span>50</span>
               <span>0</span>
 
-            </div>
+            </div> */}
 
 
             <div className="overview-chart-area">
@@ -322,7 +329,7 @@ function Dashboard() {
               <div className="overview-grid bottom"></div>
 
 
-              <svg
+              {/* <svg
                 className="overview-svg"
                 viewBox="0 0 600 170"
                 preserveAspectRatio="none"
@@ -368,7 +375,7 @@ function Dashboard() {
                 <span>Jul</span>
 
               </div>
-
+ */}
 
               <div className="chart-legend">
 

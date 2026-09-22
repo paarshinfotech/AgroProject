@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./Admin/Components/Sidebar";
-import Dashboard from "./Admin/Pages/Dashboards";
+import Dashboard from "./Admin/Pages/Dashboard";
 import CustomerManagement from "./Admin/Pages/CustomerManagement";
 import Report from "./Admin/Pages/Report";
 

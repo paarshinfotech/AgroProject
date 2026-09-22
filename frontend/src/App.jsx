@@ -4,6 +4,7 @@ import Sidebar from "./Admin/Components/Sidebar";
 import Dashboard from "./Admin/Pages/Dashboards";
 import CustomerManagement from "./Admin/Pages/CustomerManagement";
 import Report from "./Admin/Pages/Report";
+import VendorList from "./Admin/Pages/VendorList";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Dashboard");
@@ -23,6 +24,12 @@ function App() {
           <CustomerManagement />
         </div>
       )}
+
+      {currentPage === "Vendor Management" && (
+  <div style={{ marginLeft: "260px" }}>
+    <VendorList />
+  </div>
+)}
 
       {currentPage === "Reports" && (
         <div style={{ marginLeft: "260px" }}>

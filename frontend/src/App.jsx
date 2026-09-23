@@ -1,8 +1,10 @@
+
 import { useState } from "react";
 import Sidebar from "./Admin/Components/Sidebar";
 import Dashboard from "./Admin/Pages/Dashboard";
 import CustomerManagement from "./Admin/Pages/CustomerManagement";
 import Report from "./Admin/Pages/Report";
+import VendorList from "./Admin/Pages/VendorList";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Dashboard");
@@ -23,11 +25,18 @@ function App() {
         </div>
       )}
 
+      {currentPage === "Vendor Management" && (
+  <div style={{ marginLeft: "260px" }}>
+    <VendorList />
+  </div>
+)}
+
       {currentPage === "Reports" && (
         <div style={{ marginLeft: "260px" }}>
           <Report />
         </div>
       )}
+
     </>
   );
 }

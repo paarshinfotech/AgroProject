@@ -1,0 +1,391 @@
+.navbar {
+  width: 100%;
+  height: 90px;
+  background: #f2fcfb;
+  border-bottom: 1px solid #e7eeee;
+}
+
+.navbar-inner {
+  width: 100%;
+  height: 100%;
+  padding: 0 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 55px;
+  height: 55px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.leaf {
+  position: absolute;
+  display: block;
+  border-radius: 100% 0 100% 0;
+}
+
+.leaf-one {
+  width: 16px;
+  height: 25px;
+  background: #17617c;
+  left: 20px;
+  top: 3px;
+  transform: rotate(25deg);
+}
+
+.leaf-two {
+  width: 17px;
+  height: 25px;
+  background: #299b8f;
+  left: 7px;
+  top: 20px;
+  transform: rotate(-35deg);
+}
+
+.leaf-three {
+  width: 16px;
+  height: 24px;
+  background: #67b86b;
+  left: 34px;
+  top: 19px;
+  transform: rotate(65deg);
+}
+
+.stem {
+  position: absolute;
+  width: 4px;
+  height: 31px;
+  background: #17617c;
+  left: 27px;
+  top: 25px;
+  transform: rotate(3deg);
+  border-radius: 5px;
+}
+
+/* Logo text */
+
+.logo-text {
+  display: flex;
+  align-items: center;
+
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.logo-text span {
+  color: #17617c;
+}
+
+.logo-text strong {
+  color: #299b8f;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+.nav-item {
+  position: relative;
+
+  border: 0;
+  background: transparent;
+
+  text-decoration: none;
+  color: #333;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  padding: 10px 0;
+
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: #258f90;
+}
+
+.nav-item.active {
+  color: #258f90;
+}
+
+.nav-item.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -30px;
+
+  height: 3px;
+
+  background: #258f90;
+}
+
+/* =========================
+   SOLUTIONS DROPDOWN
+========================= */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-btn span {
+  font-size: 17px;
+}
+
+.dropdown {
+  position: absolute;
+
+  top: 42px;
+  left: -20px;
+
+  width: 210px;
+
+  background: white;
+
+  border: 1px solid #e7eeee;
+  border-radius: 6px;
+
+  padding: 8px 0;
+
+  display: none;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown {
+  display: block;
+}
+
+.dropdown a {
+  display: block;
+
+  padding: 12px 16px;
+
+  text-decoration: none;
+
+  color: #333;
+
+  font-size: 14px;
+}
+
+.dropdown a:hover {
+  background: #f2fafa;
+  color: #258f90;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn {
+  text-decoration: none;
+
+  background: #258f90;
+  color: white;
+
+  padding: 11px 25px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  border-radius: 6px;
+
+  transition: 0.2s ease;
+}
+
+.login-btn:hover {
+  background: #1d7778;
+}
+
+/* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.menu-btn {
+  display: none;
+
+  border: 0;
+  background: transparent;
+
+  width: 35px;
+  padding: 5px;
+
+  cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+
+  width: 25px;
+  height: 2px;
+
+  background: #17617c;
+
+  margin: 5px 0;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .navbar-inner {
+    padding: 0 30px;
+  }
+
+  .nav {
+    gap: 25px;
+  }
+
+  .logo-text {
+    font-size: 23px;
+  }
+
+  .nav-item {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: 75px;
+  }
+
+  .navbar-inner {
+    padding: 0 20px;
+  }
+
+  .logo-icon {
+    width: 45px;
+    height: 45px;
+    transform: scale(0.75);
+    transform-origin: left center;
+    margin-right: -10px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+
+    position: absolute;
+
+    top: 75px;
+    left: 0;
+
+    width: 100%;
+
+    background: white;
+
+    padding: 15px 20px 20px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0;
+
+    border-top: 1px solid #eee;
+
+    box-sizing: border-box;
+
+    z-index: 1000;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+    padding: 13px 5px;
+  }
+
+  .nav-item.active::after {
+    display: none;
+  }
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;          /* Place exactly below Solutions */
+    left: 0;
+    min-width: 220px;
+
+    background: white;
+    border: 1px solid #e7eeee;
+    border-radius: 8px;
+
+    padding: 8px 0;
+    margin-top: 8px;    /* Small spacing */
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+    display: none;
+    z-index: 1000;
+}
+
+/* .nav-dropdown:hover .dropdown {
+    display: block;
+} */
+
+  .login-btn {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 8px;
+
+    box-sizing: border-box;
+  }
+}

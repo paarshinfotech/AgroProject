@@ -205,14 +205,6 @@ function Dashboard() {
 
           <div className="revenue-chart">
 
-            {/* <div className="revenue-y-axis">
-              <span>5000</span>
-              <span>4000</span>
-              <span>3000</span>
-              <span>2000</span>
-              <span>1000</span>
-            </div> */}
-
 
             <div className="revenue-chart-area">
 

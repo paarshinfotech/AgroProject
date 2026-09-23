@@ -1,19 +1,17 @@
-<<<<<<< HEAD
-
 import { useState } from "react";
+
 import Sidebar from "./Admin/Components/Sidebar";
 import Dashboard from "./Admin/Pages/Dashboard";
 import CustomerManagement from "./Admin/Pages/CustomerManagement";
 import Report from "./Admin/Pages/Report";
 import VendorList from "./Admin/Pages/VendorList";
-=======
-import React from "react";
+import PushNotifications from "./Admin/Pages/PushNotifications";
 import ApprovalManagement from "./Admin/Components/CSS/Pages/ApprovalManagement";
->>>>>>> f722e78e1e9f085fc20922a3483466c2fce9111f
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("Dashboard");
+
   return (
-<<<<<<< HEAD
     <>
       <Sidebar setCurrentPage={setCurrentPage} />
 
@@ -30,10 +28,16 @@ function App() {
       )}
 
       {currentPage === "Vendor Management" && (
-  <div style={{ marginLeft: "260px" }}>
-    <VendorList />
-  </div>
-)}
+        <div style={{ marginLeft: "260px" }}>
+          <VendorList />
+        </div>
+      )}
+
+      {currentPage === "Approval Management" && (
+        <div style={{ marginLeft: "260px" }}>
+          <ApprovalManagement />
+        </div>
+      )}
 
       {currentPage === "Reports" && (
         <div style={{ marginLeft: "260px" }}>
@@ -41,10 +45,12 @@ function App() {
         </div>
       )}
 
+      {currentPage === "Push Notification" && (
+        <div style={{ marginLeft: "260px" }}>
+          <PushNotifications />
+        </div>
+      )}
     </>
-=======
-    <ApprovalManagement />
->>>>>>> f722e78e1e9f085fc20922a3483466c2fce9111f
   );
 }
 

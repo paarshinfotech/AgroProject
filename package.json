@@ -8,6 +8,7 @@
   },
   "type": "commonjs",
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "cors": "^2.8.6",
     "dotenv": "^18.0.0",
     "express": "^5.2.1",

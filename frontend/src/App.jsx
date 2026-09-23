@@ -6,7 +6,7 @@ import CustomerManagement from "./Admin/Pages/CustomerManagement";
 import Report from "./Admin/Pages/Report";
 import VendorList from "./Admin/Pages/VendorList";
 import PushNotifications from "./Admin/Pages/PushNotifications";
-import ApprovalManagement from "./Admin/Components/CSS/Pages/ApprovalManagement";
+import ApprovalManagement from "./Admin/Pages/ApprovalManagement";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Dashboard");

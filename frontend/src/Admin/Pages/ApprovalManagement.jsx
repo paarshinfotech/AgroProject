@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ApprovalManagement.css";
+import "../CSS/ApprovalManagement.css";
 
 function ApprovalManagement() {
 

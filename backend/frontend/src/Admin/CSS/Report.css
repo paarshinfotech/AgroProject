@@ -1,0 +1,318 @@
+/* Report.css
+   Black & white only for now. Once the theme/colors are finalized,
+   only this file needs to change — replace #000 / #333 / #666 / #ccc
+   below with the approved palette. Class names stay the same, so
+   Report.jsx will not need any edits.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+.reports-page {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+  padding: 32px 40px;
+  color: #000000;
+}
+
+.reports-back-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+}
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.reports-eyebrow {
+  margin: 0;
+  font-size: 13px;
+  color: #666666;
+}
+
+.reports-heading {
+  margin: 4px 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.reports-subheading {
+  margin: 0;
+  font-size: 14px;
+  color: #666666;
+  max-width: 420px;
+}
+
+.reports-search {
+  min-width: 220px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1px solid #999999;
+  background: #ffffff;
+  color: #000000;
+  font-size: 14px;
+  outline: none;
+}
+
+.reports-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 14px;
+}
+
+.reports-tab {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid #999999;
+  background: #ffffff;
+  color: #333333;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.reports-tab-active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* ---------- Card grid ---------- */
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.reports-card {
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reports-card-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reports-category-pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 1px solid #999999;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: #333333;
+}
+
+.reports-card-title {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.reports-card-tagline {
+  margin: 0;
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.4;
+}
+
+.reports-field-list {
+  margin: 6px 0 0;
+  padding: 0 0 0 18px;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reports-field-item {
+  font-size: 12.5px;
+  color: #333333;
+}
+
+.reports-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.reports-btn {
+  flex: 1;
+  padding: 9px 0;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.reports-btn-view {
+  border: 1px solid #999999;
+  background: #ffffff;
+  color: #000000;
+}
+
+.reports-btn-download {
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+}
+
+.reports-btn-download:disabled {
+  background: #666666;
+  border-color: #666666;
+  cursor: not-allowed;
+}
+
+.reports-btn-download-wide {
+  flex: none;
+  padding: 10px 22px;
+}
+
+.reports-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 0;
+}
+
+.reports-empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  color: #000000;
+}
+
+.reports-empty-text {
+  color: #666666;
+  font-size: 13.5px;
+  margin-top: 6px;
+}
+
+/* ---------- Detail view: table ---------- */
+
+.reports-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.reports-table thead {
+  background: #000000;
+}
+
+.reports-table th {
+  color: #ffffff;
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reports-table td {
+  padding: 11px 14px;
+  border-top: 1px solid #e0e0e0;
+  color: #222222;
+  white-space: nowrap;
+}
+
+.reports-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ---------- Pagination ---------- */
+
+.reports-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.reports-pagination-info {
+  font-size: 13px;
+  color: #666666;
+}
+
+.reports-pagination-controls {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.reports-page-btn {
+  min-width: 34px;
+  padding: 7px 10px;
+  border-radius: 4px;
+  border: 1px solid #999999;
+  background: #ffffff;
+  color: #000000;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reports-page-btn-active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.reports-page-btn:disabled {
+  color: #aaaaaa;
+  border-color: #dddddd;
+  cursor: not-allowed;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .reports-page {
+    padding: 20px 16px;
+  }
+
+  .reports-heading {
+    font-size: 24px;
+  }
+
+  .reports-search {
+    width: 100%;
+  }
+
+  .reports-card-actions {
+    flex-direction: column;
+  }
+
+  .reports-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

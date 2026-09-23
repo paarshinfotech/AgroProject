@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../CSS/Dashboard.css";
 
 function Dashboard() {
-
+  
   // =================================================
   // DASHBOARD DATA
   // =================================================
+  
 
   const [dashboardData, setDashboardData] = useState({
     totalCustomers: 0,
@@ -15,16 +16,16 @@ function Dashboard() {
     totalRevenue: 0
   });
 
-  // =================================================
+  //*=================================
   // API STATES
-  // =================================================
+  //*===================================
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // =================================================
+  //*=========================================
   // CALL ADMIN DASHBOARD API
-  // =================================================
+  //*==========================================
 
   useEffect(() => {
 
@@ -57,9 +58,8 @@ function Dashboard() {
 
   }, []);
 
-  // =================================================
   // LOADING
-  // =================================================
+ 
 
   if (loading) {
     return (
@@ -69,9 +69,8 @@ function Dashboard() {
     );
   }
 
-  // =================================================
   // ERROR
-  // =================================================
+ 
 
   if (error) {
     return (
@@ -128,16 +127,16 @@ function Dashboard() {
 
   ];
 
-  // =================================================
+ //*=====================================
   // RETURN
-  // =================================================
+ //*========================================
 
   return (
 
     <div className="dashboard">
-       {/* ==============================================
-          PAGE HEADER
-      ============================================== */}
+       
+       {/* PAGE HEADER */}
+     
 
       <div className="Dashboard-header">
         <h2>Dashboard</h2>
@@ -214,58 +213,7 @@ function Dashboard() {
               <div className="revenue-grid grid-4"></div>
               <div className="revenue-grid grid-bottom"></div>
 
-{/* 
-              <div className="revenue-bars">
 
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "70px" }}
-                  ></div>
-                  <span>Jan</span>
-                </div>
-
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "100px" }}
-                  ></div>
-                  <span>Feb</span>
-                </div>
-
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "60px" }}
-                  ></div>
-                  <span>Mar</span>
-                </div>
-
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "130px" }}
-                  ></div>
-                  <span>Apr</span>
-                </div>
-
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "90px" }}
-                  ></div>
-                  <span>May</span>
-                </div>
-
-                <div className="revenue-column">
-                  <div
-                    className="revenue-bar"
-                    style={{ height: "150px" }}
-                  ></div>
-                  <span>Jun</span>
-                </div> */}
-
-              {/* </div> */}
 
             </div>
 
@@ -301,15 +249,6 @@ function Dashboard() {
 
           <div className="customer-vendor-chart">
 
-            {/* <div className="overview-y-axis">
-
-              <span>200</span>
-              <span>150</span>
-              <span>100</span>
-              <span>50</span>
-              <span>0</span>
-
-            </div> */}
 
 
             <div className="overview-chart-area">
@@ -320,54 +259,6 @@ function Dashboard() {
               <div className="overview-grid fourth"></div>
               <div className="overview-grid bottom"></div>
 
-
-              {/* <svg
-                className="overview-svg"
-                viewBox="0 0 600 170"
-                preserveAspectRatio="none"
-              >
-
-                <polyline
-                  className="customer-line"
-                  points="
-                    0,140
-                    100,100
-                    200,120
-                    300,70
-                    400,90
-                    500,40
-                    600,60
-                  "
-                />
-
-                <polyline
-                  className="vendor-line"
-                  points="
-                    0,150
-                    100,130
-                    200,140
-                    300,110
-                    400,120
-                    500,90
-                    600,100
-                  "
-                />
-
-              </svg>
-
-
-              <div className="overview-months">
-
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mar</span>
-                <span>Apr</span>
-                <span>May</span>
-                <span>Jun</span>
-                <span>Jul</span>
-
-              </div>
- */}
 
               <div className="chart-legend">
 

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroProject - Push Notifications</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- Header -->
+    <div class="page-header">
+
+        <div>
+            <h1>Push Notifications</h1>
+            <p>
+                
+            </p>
+        </div>
+
+        
+    </div>
+
+
+    <!-- Summary Cards -->
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-top">
+                <span class="card-title">Total Sent</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <div class="card-value" id="totalSent">0</div>
+
+            <div class="card-description">
+                Across all channels
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-top">
+                <span class="card-title">SMS Sent</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <div class="card-value" id="smsSent">0</div>
+
+            <div class="card-description">
+                Total SMS notifications
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-top">
+                <span class="card-title">Emails Sent</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <div class="card-value" id="emailSent">0</div>
+
+            <div class="card-description">
+                Total email notifications
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-top">
+                <span class="card-title">Most Targeted</span>
+                <span class="card-icon"></span>
+            </div>
+
+            <div class="card-value" id="mostTargeted">
+                All Users
+            </div>
+
+            <div class="card-description">
+                Most common audience
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Notification History -->
+    <div class="section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Notification History</h2>
+                <p>
+                    A log of all sent and scheduled AgroProject notifications.
+                </p>
+            </div>
+
+            <button class="create-btn" onclick="openModal()">
+                + Create New Notification
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Target</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="notificationTable">
+
+                    <tr id="emptyRow">
+                        <td colspan="6">
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+                                    
+                                </div>
+
+                                <div>
+                                    No notifications created yet.
+                                </div>
+
+                                <div style="margin-top:6px;font-size:12px;">
+                                    Create a notification to communicate with your users.
+                                </div>
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Create Notification Modal -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Create New Notification</h2>
+
+            <button class="close-btn" onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="notificationForm">
+
+            <!-- Title -->
+            <div class="form-group">
+
+                <label>
+                    Notification Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="e.g. Heavy Rain Alert for Farmers"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Message -->
+            <div class="form-group">
+
+                <label>
+                    Notification Message
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Enter notification message..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- Channel -->
+            <div class="form-group">
+
+                <label>
+                    Notification Channel
+                </label>
+
+                <div class="channels">
+
+                    <label class="channel-option">
+                        <input
+                            type="radio"
+                            name="channel"
+                            value="Push"
+                            checked
+                        >
+                        <span> Push Notification</span>
+                    </label>
+
+                    <label class="channel-option">
+                        <input
+                            type="radio"
+                            name="channel"
+                            value="SMS"
+                        >
+                        <span> SMS</span>
+                    </label>
+
+                    <label class="channel-option">
+                        <input
+                            type="radio"
+                            name="channel"
+                            value="Email"
+                        >
+                        <span> Email</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Target -->
+            <div class="form-group">
+
+                <label>
+                    Target Audience
+                </label>
+
+                <div class="target-grid">
+
+                    <label class="target-option">
+                        <input
+                            type="radio"
+                            name="target"
+                            value="All Users"
+                            checked
+                        >
+                        All Users
+                    </label>
+
+                    <label class="target-option">
+                        <input
+                            type="radio"
+                            name="target"
+                            value="Farmers"
+                        >
+                        Farmers
+                    </label>
+
+                    <label class="target-option">
+                        <input
+                            type="radio"
+                            name="target"
+                            value="Dealers"
+                        >
+                        Dealers
+                    </label>
+
+                    <label class="target-option">
+                        <input
+                            type="radio"
+                            name="target"
+                            value="FPOs"
+                        >
+                        FPOs / Organizations
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Agriculture Category -->
+            <div class="form-group">
+
+                <label>
+                    Notification Category
+                </label>
+
+                <select id="category">
+
+                    <option value="Weather Alert">
+                        Weather Alert
+                    </option>
+
+                    <option value="Crop Advisory">
+                        Crop Advisory
+                    </option>
+
+                    <option value="Market Price">
+                        Market Price
+                    </option>
+
+                    <option value="Government Scheme">
+                        Government Scheme
+                    </option>
+
+                    <option value="Pest & Disease">
+                        Pest & Disease Alert
+                    </option>
+
+                    <option value="Farming Tips">
+                        Farming Tips
+                    </option>
+
+                    <option value="General">
+                        General Announcement
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Location -->
+            <div class="form-group">
+
+                <label>
+                    Target Location
+                </label>
+
+                <div class="form-row">
+
+                    <input
+                        type="text"
+                        id="state"
+                        placeholder="State e.g. Maharashtra"
+                    >
+
+                    <input
+                        type="text"
+                        id="district"
+                        placeholder="District e.g. Akola"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Send Type -->
+            <div class="form-group">
+
+                <label>
+                    Send Option
+                </label>
+
+                <select id="sendOption" onchange="toggleSchedule()">
+
+                    <option value="now">
+                        Send Now
+                    </option>
+
+                    <option value="schedule">
+                        Schedule for Later
+                    </option>
+
+                </select>
+
+
+                <div class="schedule-box" id="scheduleBox">
+
+                    <div class="form-row">
+
+                        <input
+                            type="date"
+                            id="scheduleDate"
+                        >
+
+                        <input
+                            type="time"
+                            id="scheduleTime"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="send-btn"
+                >
+                    Send Notification
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

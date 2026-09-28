@@ -1,9 +1,4 @@
-/* Report.css
-   Black & white only for now. Once the theme/colors are finalized,
-   only this file needs to change — replace #000 / #333 / #666 / #ccc
-   below with the approved palette. Class names stay the same, so
-   Report.jsx will not need any edits.
-*/
+
 
 * {
   box-sizing: border-box;
@@ -214,7 +209,7 @@
 
 .reports-table-wrap {
   overflow-x: auto;
-  border: 1px solid #050000;
+  border: 1px solid #cccccc;
   border-radius: 6px;
 }
 
@@ -224,16 +219,20 @@
   font-size: 13.5px;
 }
 
-.reports-table thead {
+.reports-table thead,
+.reports-page .reports-table thead tr,
+.reports-page .reports-table thead th {
   background: #000000;
+  background-color: #000000;
 }
 
-.reports-table th {
+.reports-page .reports-table thead th {
   color: #ffffff;
   text-align: left;
   padding: 12px 14px;
   font-weight: 600;
   white-space: nowrap;
+  border: none;
 }
 
 .reports-table td {

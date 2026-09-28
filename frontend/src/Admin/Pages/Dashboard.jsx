@@ -23,6 +23,19 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // =========================================
+  // REVENUE MONTHLY / YEARLY DROPDOWN
+  // =========================================
+
+  const [revenuePeriod, setRevenuePeriod] = useState("Monthly");
+
+  // =========================================
+  // CUSTOMER & VENDOR MONTHLY / YEARLY DROPDOWN
+  // =========================================
+
+  const [overviewPeriod, setOverviewPeriod] = useState("Monthly");
+
+
   //*=========================================
   // CALL ADMIN DASHBOARD API
   //*==========================================
@@ -58,8 +71,10 @@ function Dashboard() {
 
   }, []);
 
+
+  // =================================================
   // LOADING
- 
+  // =================================================
 
   if (loading) {
     return (
@@ -69,8 +84,10 @@ function Dashboard() {
     );
   }
 
+
+  // =================================================
   // ERROR
- 
+  // =================================================
 
   if (error) {
     return (
@@ -82,6 +99,7 @@ function Dashboard() {
       </div>
     );
   }
+
 
   // =================================================
   // STATISTICS CARDS
@@ -119,28 +137,23 @@ function Dashboard() {
       icon: "₹"
     },
 
-    {
-      title: "Total Booking",
-      value: "0",
-      icon: "▤"
-    }
-
   ];
 
- //*=====================================
+
+  //*=====================================
   // RETURN
- //*========================================
+  //*========================================
 
   return (
 
     <div className="dashboard">
-       
-       {/* PAGE HEADER */}
-     
+
+      {/* PAGE HEADER */}
 
       <div className="Dashboard-header">
         <h2>Dashboard</h2>
       </div>
+
 
       {/* ==============================================
           STATISTICS CARDS
@@ -181,7 +194,10 @@ function Dashboard() {
 
       <div className="charts-grid">
 
-        {/* REVENUE CHART */}
+
+        {/* =================================================
+            REVENUE CHART
+        ================================================= */}
 
         <div className="chart-card">
 
@@ -195,9 +211,17 @@ function Dashboard() {
               </p>
             </div>
 
-            <button className="period-button">
-              Monthly
-            </button>
+
+            {/* REVENUE DROPDOWN */}
+
+            <select
+              className="period-dropdown"
+              value={revenuePeriod}
+              onChange={(e) => setRevenuePeriod(e.target.value)}
+            >
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
 
           </div>
 
@@ -208,12 +232,14 @@ function Dashboard() {
             <div className="revenue-chart-area">
 
               <div className="revenue-grid grid-top"></div>
+
               <div className="revenue-grid grid-2"></div>
+
               <div className="revenue-grid grid-3"></div>
+
               <div className="revenue-grid grid-4"></div>
+
               <div className="revenue-grid grid-bottom"></div>
-
-
 
             </div>
 
@@ -222,7 +248,9 @@ function Dashboard() {
         </div>
 
 
-        {/* CUSTOMER / VENDOR CHART */}
+        {/* =================================================
+            CUSTOMER / VENDOR CHART
+        ================================================= */}
 
         <div className="chart-card">
 
@@ -240,9 +268,17 @@ function Dashboard() {
 
             </div>
 
-            <button className="period-button">
-              Monthly
-            </button>
+
+            {/* CUSTOMER / VENDOR DROPDOWN */}
+
+            <select
+              className="period-dropdown"
+              value={overviewPeriod}
+              onChange={(e) => setOverviewPeriod(e.target.value)}
+            >
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
 
           </div>
 
@@ -250,13 +286,16 @@ function Dashboard() {
           <div className="customer-vendor-chart">
 
 
-
             <div className="overview-chart-area">
 
               <div className="overview-grid top"></div>
+
               <div className="overview-grid second"></div>
+
               <div className="overview-grid third"></div>
+
               <div className="overview-grid fourth"></div>
+
               <div className="overview-grid bottom"></div>
 
 

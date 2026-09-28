@@ -311,6 +311,23 @@
   color: #777777;
 }
 
+ .period-dropdown {
+  width: 120px;
+  height: 38px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.period-dropdown:hover {
+  background-color: #e5e5e5;
+}
+
 
 /* =================================================
    CUSTOMER VENDOR CHART

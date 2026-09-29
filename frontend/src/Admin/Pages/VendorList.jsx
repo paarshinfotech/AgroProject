@@ -1,485 +1,506 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../CSS/VendorList.css";
 
 const VendorList = () => {
-
-  // Vendor data
   const [vendors, setVendors] = useState([]);
 
-  // Search and filters
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
 
-  // Pagination
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(5);
+
   const [totalPages, setTotalPages] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
-  // Loading and error
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  // Fetch vendors
-  const handleVendorList = async () => {
+  /* ============================================================
+     FETCH VENDORS
+  ============================================================ */
 
+  const fetchVendors = async () => {
     try {
-
       setLoading(true);
-      setError("");
 
       const response = await axios.get(
         "http://localhost:8080/api/admin/vendors",
         {
           params: {
-            search: search,
-            location: location,
-            status: status,
+            search,
+            location,
+            status,
             page: currentPage,
-            size: pageSize
-          }
+            size: pageSize,
+          },
         }
       );
 
-      console.log("Vendor API response:", response.data);
+      console.log("Vendor API Response:", response.data);
 
-      setVendors(response.data.vendors);
-      setTotalPages(response.data.totalPages);
-      setTotalElements(response.data.totalElements);
+      setVendors(
+        Array.isArray(response.data?.vendors)
+          ? response.data.vendors
+          : []
+      );
 
+      setTotalPages(
+        Number(response.data?.totalPages) || 0
+      );
+
+      setTotalElements(
+        Number(response.data?.totalElements) || 0
+      );
     } catch (error) {
+      console.error("Error fetching vendors:", error);
 
-      console.log("Vendor API Error:", error);
-      setError("Failed to load vendors.");
-
+      /*
+        Keep the table structure visible even when
+        the backend is currently returning an error.
+      */
+      setVendors([]);
+      setTotalPages(0);
+      setTotalElements(0);
     } finally {
-
       setLoading(false);
-
     }
   };
 
-  // Fetch whenever filters or page changes
+  /* ============================================================
+     FETCH WHEN FILTER / PAGE / PAGE SIZE CHANGES
+  ============================================================ */
+
   useEffect(() => {
+    fetchVendors();
+  }, [search, location, status, currentPage, pageSize]);
 
-    handleVendorList();
+  /* ============================================================
+     SEARCH
+  ============================================================ */
 
-  }, [search, location, status, currentPage]);
-
-
-  // Search
-  const handleSearchChange = (e) => {
-
+  const handleSearch = (e) => {
     setSearch(e.target.value);
     setCurrentPage(0);
-
   };
 
+  /* ============================================================
+     LOCATION
+  ============================================================ */
 
-  // Location
   const handleLocationChange = (e) => {
-
     setLocation(e.target.value);
     setCurrentPage(0);
-
   };
 
+  /* ============================================================
+     STATUS
+  ============================================================ */
 
-  // Status
   const handleStatusChange = (e) => {
-
     setStatus(e.target.value);
     setCurrentPage(0);
-
   };
 
+  /* ============================================================
+     PREVIOUS PAGE
+  ============================================================ */
 
-  // Previous page
   const handlePrevious = () => {
-
     if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((prev) => prev - 1);
     }
-
   };
 
+  /* ============================================================
+     NEXT PAGE
+  ============================================================ */
 
-  // Next page
   const handleNext = () => {
-
     if (currentPage < totalPages - 1) {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage((prev) => prev + 1);
     }
-
   };
 
+  /* ============================================================
+     ACTIVE / PENDING
+  ============================================================ */
+
+  const activeVendors = vendors.filter(
+    (vendor) =>
+      vendor.status?.toLowerCase() === "active"
+  ).length;
+
+  const pendingVendors = vendors.filter(
+    (vendor) =>
+      vendor.status?.toLowerCase() === "pending"
+  ).length;
+
+  /* ============================================================
+     DISPLAY VALUES
+  ============================================================ */
+
+  const showingFrom =
+    totalElements === 0
+      ? 0
+      : currentPage * pageSize + 1;
+
+  const showingTo =
+    totalElements === 0
+      ? 0
+      : Math.min(
+          (currentPage + 1) * pageSize,
+          totalElements
+        );
 
   return (
+    <div className="vendor-page">
 
-    <div className="vendor-content">
+      <div className="vendor-page-inner">
 
-      {/* Page Header */}
+        {/* ======================================================
+            PAGE HEADER
+        ====================================================== */}
 
-      <div className="vendor-page-header">
-
-        <div>
-
+        <div className="vendor-page-header">
           <h2>Vendor Management</h2>
 
           <p>
-            Manage and monitor all registered vendors
+            View and manage vendor information
           </p>
-
-        </div>
-
-        <div className="vendor-total-card">
-
-          <span>Total Vendors</span>
-
-          <strong>{totalElements}</strong>
-
-        </div>
-
-      </div>
-
-
-      {/* Filters Card */}
-
-      <div className="vendor-filter-card">
-
-        <div className="filter-header">
-
-          <h4>Vendor List</h4>
-
-          <span>
-            {totalElements} vendors
-          </span>
-
         </div>
 
 
-        <div className="vendor-filters">
+        {/* ======================================================
+            KPI CARDS
+        ====================================================== */}
 
-          {/* Search */}
+        <div className="vendor-kpi-section">
 
-          <div className="filter-group search-group">
+          <div className="vendor-kpi-card">
+            <div className="vendor-kpi-icon">
+              <i className="bi bi-people"></i>
+            </div>
 
-            <label>Search</label>
+            <div className="vendor-kpi-content">
+              <p className="vendor-kpi-label">
+                Total Vendors
+              </p>
 
-            <div className="input-wrapper">
+              <h3 className="vendor-kpi-value">
+                {totalElements}
+              </h3>
+            </div>
+          </div>
 
-              <span className="input-icon">
-                🔍
-              </span>
 
-              <input
-                type="text"
-                placeholder="Search vendor name..."
-                value={search}
-                onChange={handleSearchChange}
-              />
+          <div className="vendor-kpi-card">
+            <div className="vendor-kpi-icon">
+              <i className="bi bi-person-check"></i>
+            </div>
+
+            <div className="vendor-kpi-content">
+              <p className="vendor-kpi-label">
+                Active Vendors
+              </p>
+
+              <h3 className="vendor-kpi-value">
+                {activeVendors}
+              </h3>
+            </div>
+          </div>
+
+
+          <div className="vendor-kpi-card">
+            <div className="vendor-kpi-icon">
+              <i className="bi bi-person-exclamation"></i>
+            </div>
+
+            <div className="vendor-kpi-content">
+              <p className="vendor-kpi-label">
+                Pending Vendors
+              </p>
+
+              <h3 className="vendor-kpi-value">
+                {pendingVendors}
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+
+        {/* ======================================================
+            MAIN CONTENT CARD
+        ====================================================== */}
+
+        <div className="vendor-content-card">
+
+          {/* ====================================================
+              FILTER SECTION
+          ==================================================== */}
+
+          <div className="vendor-filter-section">
+
+            <h3 className="vendor-filter-title">
+              All Vendors
+            </h3>
+
+
+            <div className="vendor-filter-controls">
+
+              {/* Search */}
+
+              <div className="vendor-search-box">
+                <i className="bi bi-search"></i>
+
+                <input
+                  type="text"
+                  placeholder="Search vendors..."
+                  value={search}
+                  onChange={handleSearch}
+                  autoComplete="off"
+                />
+              </div>
+
+
+              {/* Location */}
+
+              <div className="vendor-location-box">
+                <i className="bi bi-geo-alt"></i>
+
+                <input
+                  type="text"
+                  placeholder="Search by address"
+                  value={location}
+                  onChange={handleLocationChange}
+                  autoComplete="off"
+                />
+              </div>
+
+
+              {/* Status */}
+
+              <div className="vendor-status-box">
+                <select
+                  value={status}
+                  onChange={handleStatusChange}
+                >
+                  <option value="">
+                    All Status
+                  </option>
+
+                  <option value="ACTIVE">
+                    Active
+                  </option>
+
+                  <option value="PENDING">
+                    Pending
+                  </option>
+
+                  <option value="INACTIVE">
+                    Inactive
+                  </option>
+                </select>
+              </div>
 
             </div>
 
           </div>
 
 
-          {/* Location */}
+          {/* ====================================================
+              TABLE
+          ==================================================== */}
 
-          <div className="filter-group">
+          <div className="vendor-table-wrapper">
 
-            <label>Location</label>
+            <table className="vendor-table">
 
-            <div className="input-wrapper">
-
-              <span className="input-icon">
-                📍
-              </span>
-
-              <input
-                type="text"
-                placeholder="Search location..."
-                value={location}
-                onChange={handleLocationChange}
-              />
-
-            </div>
-
-          </div>
-
-
-          {/* Status */}
-
-          <div className="filter-group">
-
-            <label>Status</label>
-
-            <select
-              value={status}
-              onChange={handleStatusChange}
-            >
-
-              <option value="">
-                All Status
-              </option>
-
-              <option value="Active">
-                Active
-              </option>
-
-              <option value="Pending">
-                Pending
-              </option>
-
-              <option value="Inactive">
-                Inactive
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* Error */}
-
-      {error && (
-
-        <div className="vendor-error">
-
-          {error}
-
-        </div>
-
-      )}
-
-
-      {/* Table Card */}
-
-      <div className="vendor-table-card">
-
-        <div className="table-responsive">
-
-          <table className="vendor-table">
-
-            <thead>
-
-              <tr>
-
-                <th>#</th>
-
-                <th>Vendor</th>
-
-                <th>Email</th>
-
-                <th>Phone</th>
-
-                <th>Business</th>
-
-                <th>Location</th>
-
-                <th>Status</th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-              {loading ? (
-
+              <thead>
                 <tr>
-
-                  <td
-                    colSpan="7"
-                    className="table-message"
-                  >
-
-                    <div className="loading-spinner"></div>
-
-                    Loading vendors...
-
-                  </td>
-
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>Business Name</th>
+                  <th>Address</th>
+                  <th>Status</th>
                 </tr>
+              </thead>
 
-              ) : vendors.length > 0 ? (
 
-                vendors.map((vendor, index) => (
+              <tbody>
 
-                  <tr key={vendor.id}>
+                {loading ? (
 
-                    <td className="vendor-number">
-
-                      {currentPage * pageSize + index + 1}
-
+                  <tr>
+                    <td
+                      colSpan="7"
+                      className="vendor-loading"
+                    >
+                      Loading vendors...
                     </td>
-
-
-                    <td>
-
-                      <div className="vendor-name-cell">
-
-                        <div className="vendor-avatar">
-
-                          {vendor.name
-                            ? vendor.name.charAt(0).toUpperCase()
-                            : "V"}
-
-                        </div>
-
-                        <span>
-                          {vendor.name || "-"}
-                        </span>
-
-                      </div>
-
-                    </td>
-
-
-                    <td>
-                      {vendor.email || "-"}
-                    </td>
-
-
-                    <td>
-                      {vendor.mobile || "-"}
-                    </td>
-
-
-                    <td>
-                      {vendor.businessName || "-"}
-                    </td>
-
-
-                    <td>
-                      {vendor.address || "-"}
-                    </td>
-
-
-                    <td>
-
-                      <span
-                        className={`status-badge ${
-                          vendor.status
-                            ? vendor.status.toLowerCase()
-                            : ""
-                        }`}
-                      >
-
-                        <span className="status-dot"></span>
-
-                        {vendor.status || "Unknown"}
-
-                      </span>
-
-                    </td>
-
                   </tr>
 
-                ))
+                ) : vendors.length > 0 ? (
 
-              ) : (
+                  vendors.map((vendor, index) => (
 
-                <tr>
+                    <tr
+                      key={
+                        vendor.id ||
+                        vendor._id ||
+                        index
+                      }
+                    >
 
-                  <td
-                    colSpan="7"
-                    className="table-message"
-                  >
-
-                    <div className="empty-icon">
-                      📋
-                    </div>
-
-                    <strong>
-                      No vendors found
-                    </strong>
-
-                    <span>
-                      Try changing your search or filter.
-                    </span>
-
-                  </td>
-
-                </tr>
-
-              )}
-
-            </tbody>
-
-          </table>
-
-        </div>
+                      <td>
+                        {currentPage * pageSize +
+                          index +
+                          1}
+                      </td>
 
 
-        {/* Pagination */}
+                      <td>
+                        <div className="vendor-name">
+                          {vendor.name || "-"}
+                        </div>
+                      </td>
 
-        <div className="vendor-pagination">
 
-          <div className="pagination-info">
+                      <td>
+                        {vendor.email || "-"}
+                      </td>
 
-            Showing{" "}
 
-            {totalElements === 0
-              ? 0
-              : currentPage * pageSize + 1}
+                      <td>
+                        {vendor.mobile || "-"}
+                      </td>
 
-            {" "}to{" "}
 
-            {Math.min(
-              (currentPage + 1) * pageSize,
-              totalElements
-            )}
+                      <td>
+                        {vendor.businessName || "-"}
+                      </td>
 
-            {" "}of{" "}
 
-            {totalElements}
+                      <td>
+                        <div className="vendor-location">
+                          <i className="bi bi-geo-alt"></i>
+
+                          <span>
+                            {vendor.address || "-"}
+                          </span>
+                        </div>
+                      </td>
+
+
+                      <td>
+                        <span
+                          className={`vendor-status-badge ${
+                            vendor.status?.toLowerCase() || ""
+                          }`}
+                        >
+                          {vendor.status || "-"}
+                        </span>
+                      </td>
+
+                    </tr>
+
+                  ))
+
+                ) : (
+
+                  <tr>
+                    <td
+                      colSpan="7"
+                      className="vendor-loading"
+                    >
+                      Loading vendors...
+                    </td>
+                  </tr>
+
+                )}
+
+              </tbody>
+
+            </table>
 
           </div>
 
 
-          <div className="pagination-controls">
+          {/* ====================================================
+              PAGINATION
+          ==================================================== */}
 
-            <button
-              className="pagination-btn"
-              onClick={handlePrevious}
-              disabled={currentPage === 0}
-            >
+          <div className="vendor-pagination">
 
-              ← Previous
-
-            </button>
-
-
-            <span className="page-number">
-
-              {totalPages === 0
-                ? 0
-                : currentPage + 1}
-
-            </span>
+            <div className="vendor-pagination-info">
+              Showing{" "}
+              <strong>{showingFrom}</strong>
+              {"–"}
+              <strong>{showingTo}</strong>
+              {" "}of{" "}
+              <strong>{totalElements}</strong>
+              {" "}vendors
+            </div>
 
 
-            <button
-              className="pagination-btn"
-              onClick={handleNext}
-              disabled={
-                totalPages === 0 ||
-                currentPage >= totalPages - 1
-              }
-            >
+            <div className="vendor-results-per-page">
 
-              Next →
+              <span>
+                Results per page
+              </span>
 
-            </button>
+              <select
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(
+                    Number(e.target.value)
+                  );
+                  setCurrentPage(0);
+                }}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+
+            </div>
+
+
+            <div className="vendor-pagination-buttons">
+
+              <button
+                type="button"
+                onClick={handlePrevious}
+                disabled={currentPage === 0}
+                aria-label="Previous page"
+              >
+                &lt;
+              </button>
+
+
+              <span className="vendor-current-page">
+                {currentPage + 1}
+              </span>
+
+
+              <button
+                type="button"
+                onClick={handleNext}
+                disabled={
+                  currentPage >= totalPages - 1 ||
+                  totalPages === 0
+                }
+                aria-label="Next page"
+              >
+                &gt;
+              </button>
+
+            </div>
 
           </div>
 
@@ -492,4 +513,3 @@ const VendorList = () => {
 };
 
 export default VendorList;
-

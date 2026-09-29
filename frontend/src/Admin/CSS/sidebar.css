@@ -1,11 +1,18 @@
+/* 
+   AgroStar Admin Panel
+   Sidebar
+    */
+
 .sidebar {
   width: 260px;
   min-width: 260px;
   height: 100vh;
+
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+
+  z-index: 1100;
 
   display: flex;
   flex-direction: column;
@@ -14,28 +21,115 @@
   color: #ffffff;
 
   border-right: 1px solid #222222;
+
+  box-sizing: border-box;
+
+  transition:
+    width 0.25s ease,
+    min-width 0.25s ease,
+    transform 0.25s ease;
 }
 
+
+/* 
+   Brand
+    */
+
 .sidebar__brand {
-  padding: 36px 28px 28px;
+  padding: 30px 24px 24px;
+}
+
+.sidebar__brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .sidebar__brand h1 {
   margin: 0;
+
   font-size: 25px;
   line-height: 1.2;
   font-weight: 700;
+
   letter-spacing: -0.4px;
+
   color: #ffffff;
+
+  white-space: nowrap;
 }
+
+
+/* 
+   Sidebar Toggle Button
+    */
+
+.sidebar__toggle {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 0;
+
+  border: 1px solid #333333;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sidebar__toggle span {
+  display: block;
+
+  width: 16px;
+  height: 1.5px;
+
+  background-color: currentColor;
+
+  border-radius: 2px;
+}
+
+.sidebar__toggle:hover {
+  background-color: #1c1c1c;
+  border-color: #555555;
+}
+
+
+/* 
+   Navigation
+    */
 
 .sidebar__nav {
   display: flex;
   flex-direction: column;
+
   gap: 4px;
 
   padding: 8px 16px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+
+/* 
+   Navigation Item
+    */
 
 .sidebar__item {
   width: 100%;
@@ -43,6 +137,7 @@
 
   display: flex;
   align-items: center;
+
   gap: 13px;
 
   padding: 0 12px;
@@ -56,9 +151,12 @@
   font-family: inherit;
   font-size: 15px;
   font-weight: 500;
+
   text-align: left;
 
   cursor: pointer;
+
+  box-sizing: border-box;
 
   transition:
     background-color 0.2s ease,
@@ -81,6 +179,11 @@
   color: #111111;
 }
 
+
+/* 
+   Icons
+    */
+
 .sidebar__icon {
   width: 20px;
   height: 20px;
@@ -97,21 +200,72 @@
   height: 18px;
 
   fill: none;
+
   stroke: currentColor;
   stroke-width: 1.8;
+
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
+
+/* 
+   Labels
+    */
+
 .sidebar__label {
   line-height: 1.3;
+
+  min-width: 0;
+
+  overflow-wrap: break-word;
 }
 
-/* Tablet */
+
+/* 
+   COLLAPSED DESKTOP SIDEBAR
+    */
+
+.sidebar--collapsed {
+  width: 76px;
+  min-width: 76px;
+}
+
+.sidebar--collapsed .sidebar__brand {
+  padding-left: 19px;
+  padding-right: 19px;
+}
+
+.sidebar--collapsed .sidebar__brand h1 {
+  display: none;
+}
+
+.sidebar--collapsed .sidebar__nav {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.sidebar--collapsed .sidebar__item {
+  justify-content: center;
+
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar--collapsed .sidebar__label {
+  display: none;
+}
+
+
+/* 
+   TABLET
+    */
+
 @media (max-width: 900px) {
+
   .sidebar {
-    width: 230px;
-    min-width: 230px;
+    width: 240px;
+    min-width: 240px;
   }
 
   .sidebar__brand {
@@ -129,21 +283,44 @@
   }
 }
 
-/* Mobile */
-@media (max-width: 640px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: auto;
 
-    border-right: none;
-    border-bottom: 1px solid #222222;
+/* 
+   MOBILE
+    */
+
+@media (max-width: 640px) {
+
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    transform: translateX(0);
+
+    transition: transform 0.25s ease;
+
+    box-shadow: 4px 0 18px rgba(0, 0, 0, 0.15);
+  }
+
+  /*
+     On mobile, collapsed means the
+     sidebar slides completely outside
+     the screen.
+  */
+
+  .sidebar--collapsed {
+    width: 280px;
+    min-width: 280px;
+
+    transform: translateX(-100%);
   }
 
   .sidebar__brand {
-    padding: 20px 22px 16px;
+    padding: 20px 20px 18px;
   }
 
   .sidebar__brand h1 {
@@ -151,26 +328,189 @@
   }
 
   .sidebar__nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    display: flex;
+    flex-direction: column;
 
-    padding: 8px 12px 14px;
+    gap: 4px;
+
+    padding: 8px 12px;
+
+    overflow-y: auto;
   }
 
   .sidebar__item {
-    min-height: 44px;
-    padding: 0 10px;
-    font-size: 13px;
+    min-height: 46px;
+
+    padding: 0 12px;
+
+    font-size: 14px;
   }
 
   .sidebar__icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .sidebar__icon svg {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
+  }
+
+  /*
+     Keep the brand and labels normal
+     when the mobile sidebar is open.
+  */
+
+  .sidebar--collapsed .sidebar__brand h1 {
+    display: block;
+  }
+
+  .sidebar--collapsed .sidebar__label {
+    display: inline;
+  }
+
+  .sidebar--collapsed .sidebar__item {
+    justify-content: flex-start;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+
+/* 
+   VERY SMALL PHONES
+    */
+
+@media (max-width: 380px) {
+
+  .sidebar {
+    width: 270px;
+    min-width: 270px;
+  }
+
+  .sidebar--collapsed {
+    width: 270px;
+    min-width: 270px;
+  }
+
+  .sidebar__brand {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .sidebar__nav {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .sidebar__item {
+    font-size: 13px;
+  }
+}
+
+
+/* 
+   MOBILE HAMBURGER BUTTON
+    */
+
+.sidebar__mobile-toggle {
+  display: none;
+}
+
+@media (max-width: 640px) {
+
+  .sidebar__mobile-toggle {
+    position: fixed;
+
+    top: 14px;
+    left: 14px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 0;
+
+    border: 1px solid #333333;
+    border-radius: 7px;
+
+    background-color: #111111;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    z-index: 1200;
+
+    box-sizing: border-box;
+  }
+
+  .sidebar__mobile-toggle span {
+    display: block;
+
+    width: 18px;
+    height: 1.5px;
+
+    background-color: currentColor;
+
+    border-radius: 2px;
+  }
+
+  .sidebar__mobile-toggle:hover {
+    background-color: #1c1c1c;
+  }
+
+  /*
+     When the sidebar is open,
+     hide the floating hamburger.
+  */
+
+  .sidebar__mobile-toggle--hidden {
+    display: none;
+  }
+}
+
+
+/* 
+   MOBILE OVERLAY
+    */
+
+.sidebar__overlay {
+  display: none;
+}
+
+@media (max-width: 640px) {
+
+  .sidebar__overlay {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    background-color: rgba(0, 0, 0, 0.35);
+
+    z-index: 1050;
+  }
+}
+
+
+/* 
+   ACCESSIBILITY / REDUCED MOTION
+    */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .sidebar,
+  .sidebar__toggle,
+  .sidebar__mobile-toggle,
+  .sidebar__item {
+    transition: none;
   }
 }

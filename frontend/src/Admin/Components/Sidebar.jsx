@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../CSS/sidebar.css";
 
 const menuItems = [
@@ -94,46 +94,102 @@ const menuItems = [
   },
 ];
 
-function Sidebar({ setCurrentPage }) {
+function Sidebar({ setCurrentPage, setSidebarCollapsed }) {
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Tell App.jsx whenever the sidebar changes state
+  useEffect(() => {
+    if (setSidebarCollapsed) {
+      setSidebarCollapsed(isCollapsed);
+    }
+  }, [isCollapsed, setSidebarCollapsed]);
 
   const handleItemClick = (label) => {
     setActiveItem(label);
-    setCurrentPage(label);
+
+    if (setCurrentPage) {
+      setCurrentPage(label);
+    }
+
+    // Close sidebar automatically after selecting a page on mobile
+    if (window.innerWidth <= 640) {
+      setIsCollapsed(true);
+    }
+  };
+
+  const toggleSidebar = () => {
+    setIsCollapsed((previousState) => !previousState);
   };
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar__brand">
-        <h1>AgriAdmin</h1>
-      </div>
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        type="button"
+        className={`sidebar__mobile-toggle ${
+          !isCollapsed ? "sidebar__mobile-toggle--hidden" : ""
+        }`}
+        onClick={toggleSidebar}
+        aria-label="Open navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <nav className="sidebar__nav" aria-label="Admin navigation">
-        {menuItems.map((item) => {
-          const isActive = activeItem === item.label;
+      {/* Sidebar */}
+      <aside className={`sidebar ${isCollapsed ? "sidebar--collapsed" : ""}`}>
+        <div className="sidebar__brand">
+          <div className="sidebar__brand-row">
+            <h1>AgriAdmin</h1>
 
-          return (
             <button
-              key={item.label}
               type="button"
-              className={`sidebar__item ${
-                isActive ? "sidebar__item--active" : ""
-              }`}
-              onClick={() => handleItemClick(item.label)}
-              aria-current={isActive ? "page" : undefined}
+              className="sidebar__toggle"
+              onClick={toggleSidebar}
+              aria-label={isCollapsed ? "Open navigation" : "Close navigation"}
             >
-              <span className="sidebar__icon">{item.icon}</span>
-
-              <span className="sidebar__label">{item.label}</span>
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
-          );
-        })}
-      </nav>
-    </aside>
+          </div>
+        </div>
+
+        <nav className="sidebar__nav" aria-label="Admin navigation">
+          {menuItems.map((item) => {
+            const isActive = activeItem === item.label;
+
+            return (
+              <button
+                key={item.label}
+                type="button"
+                className={`sidebar__item ${
+                  isActive ? "sidebar__item--active" : ""
+                }`}
+                onClick={() => handleItemClick(item.label)}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <span className="sidebar__icon">{item.icon}</span>
+
+                <span className="sidebar__label">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </aside>
+
+      {/* Mobile dark overlay */}
+      {!isCollapsed && (
+        <div
+          className="sidebar__overlay"
+          onClick={toggleSidebar}
+          aria-hidden="true"
+        ></div>
+      )}
+    </>
   );
 }
 
-
-
 export default Sidebar;
-

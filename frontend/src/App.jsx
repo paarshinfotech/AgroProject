@@ -8,6 +8,7 @@ import Report from "./Admin/Pages/Report";
 import VendorList from "./Admin/Pages/VendorList";
 import PushNotifications from "./Admin/Pages/PushNotifications";
 import ApprovalManagement from "./Admin/Pages/ApprovalManagement";
+import SubscriptionManagement from "./Admin/Pages/SubscriptionManagement";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Dashboard");
@@ -75,6 +76,15 @@ function App() {
           style={{ "--sidebar-width": sidebarWidth }}
         >
           <ApprovalManagement />
+        </div>
+      )}
+
+      {currentPage === "Subscription Management" && (
+        <div
+          className="app-content"
+          style={{ "--sidebar-width": sidebarWidth }}
+        >
+          <SubscriptionManagement />
         </div>
       )}
 

@@ -119,13 +119,32 @@
   border-radius: 10px;
 
   background: #f1f5f9;
-  color: #2563eb;
 
   font-size: 22px;
 }
 
 .vendor-kpi-icon i {
   line-height: 1;
+}
+
+
+/* ============================================================
+   KPI ICON COLORS
+============================================================ */
+
+/* Total Vendors */
+.vendor-kpi-icon.total-icon {
+  color: #000000;
+}
+
+/* Active Vendors */
+.vendor-kpi-icon.active-icon {
+  color: #2563eb;
+}
+
+/* Pending Vendors */
+.vendor-kpi-icon.pending-icon {
+  color: #000000;
 }
 
 
@@ -722,9 +741,9 @@
 }
 
 .vendor-current-page {
-  background: #2563eb;
+  background: #040406;
 
-  border-color: #2563eb;
+  border-color: #040507;
 
   color: #ffffff;
 

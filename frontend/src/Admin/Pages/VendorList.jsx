@@ -196,16 +196,16 @@ const VendorList = () => {
 
 
           <div className="vendor-kpi-card">
-            <div className="vendor-kpi-icon">
+            <div className="vendor-kpi-icon total-icon">
               <i className="bi bi-person-check"></i>
             </div>
 
-            <div className="vendor-kpi-content">
+            <div className="vendor-kpi-content active-icon">
               <p className="vendor-kpi-label">
                 Active Vendors
               </p>
 
-              <h3 className="vendor-kpi-value">
+              <h3 className="vendor-kpi-value pending-icon">
                 {activeVendors}
               </h3>
             </div>
